@@ -1,0 +1,25 @@
+syntax = "proto3";
+option go_package = "./../pb";
+
+message UserErrorRequest {
+    int64 createdAt = 2;
+    int64 updatedAt =3;
+    string message=1;
+    string type=4;
+    int64 id=5;
+}
+
+message UserErrorResponse {
+    bool status=1;
+}
+
+message Null {
+}
+message UserLogResp {
+    repeated UserErrorRequest userResp = 1;
+}
+
+service UserErrorService {
+    rpc SaveUserLogs (UserErrorRequest) returns (UserErrorResponse);
+    rpc GetUserLogs (Null) returns(UserLogResp);
+}
